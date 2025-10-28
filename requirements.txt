@@ -1,0 +1,19 @@
+# Core dependencies for Home Voice Assistant
+
+# Pipecat AI - Real-time voice conversation framework
+pipecat-ai>=0.0.40
+
+# Configuration and environment
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+PyYAML>=6.0.1
+
+# HTTP client for Home Assistant API
+aiohttp>=3.9.0
+
+# Additional async utilities
+asyncio>=3.4.3
+
+# Logging and monitoring
+python-json-logger>=2.0.7
