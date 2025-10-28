@@ -17,3 +17,9 @@ asyncio>=3.4.3
 
 # Logging and monitoring
 python-json-logger>=2.0.7
+
+# Audio processing dependencies
+deepgram-sdk>=3.0.0
+cartesia>=2.0.0
+sounddevice>=0.4.6
+numpy>=1.24.0

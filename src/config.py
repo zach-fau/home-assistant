@@ -107,6 +107,110 @@ class LoggingConfig(BaseSettings):
     )
 
 
+class AudioConfig(BaseSettings):
+    """Audio configuration for voice pipeline."""
+
+    sample_rate: int = Field(
+        default=16000,
+        description="Audio sample rate in Hz",
+        alias="AUDIO_SAMPLE_RATE"
+    )
+    channels: int = Field(
+        default=1,
+        description="Number of audio channels (1=mono, 2=stereo)",
+        alias="AUDIO_CHANNELS"
+    )
+    chunk_size: int = Field(
+        default=1024,
+        description="Audio chunk size for processing",
+        alias="AUDIO_CHUNK_SIZE"
+    )
+    input_device: Optional[int] = Field(
+        default=None,
+        description="Input device index (None=default)",
+        alias="AUDIO_INPUT_DEVICE"
+    )
+    output_device: Optional[int] = Field(
+        default=None,
+        description="Output device index (None=default)",
+        alias="AUDIO_OUTPUT_DEVICE"
+    )
+
+    @field_validator("sample_rate")
+    @classmethod
+    def validate_sample_rate(cls, v: int) -> int:
+        """Ensure sample rate is valid."""
+        valid_rates = [8000, 16000, 24000, 48000]
+        if v not in valid_rates:
+            raise ValueError(f"Sample rate must be one of: {', '.join(map(str, valid_rates))}")
+        return v
+
+    @field_validator("channels")
+    @classmethod
+    def validate_channels(cls, v: int) -> int:
+        """Ensure channels is valid."""
+        if v not in [1, 2]:
+            raise ValueError("Channels must be 1 (mono) or 2 (stereo)")
+        return v
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore"
+    )
+
+
+class PipelineConfig(BaseSettings):
+    """Pipeline configuration for voice processing."""
+
+    # Speech-to-Text
+    stt_model: str = Field(
+        default="nova-2",
+        description="Deepgram STT model to use",
+        alias="STT_MODEL"
+    )
+    stt_language: str = Field(
+        default="en-US",
+        description="Speech recognition language",
+        alias="STT_LANGUAGE"
+    )
+    stt_interim_results: bool = Field(
+        default=True,
+        description="Enable interim STT results for lower latency",
+        alias="STT_INTERIM_RESULTS"
+    )
+
+    # Text-to-Speech
+    tts_voice: str = Field(
+        default="79a125e8-cd45-4c13-8a67-188112f4dd22",
+        description="Cartesia voice ID",
+        alias="TTS_VOICE"
+    )
+    tts_model: str = Field(
+        default="sonic-english",
+        description="Cartesia TTS model",
+        alias="TTS_MODEL"
+    )
+
+    # Pipeline settings
+    max_silence_duration: float = Field(
+        default=1.5,
+        description="Maximum silence duration before ending utterance (seconds)",
+        alias="PIPELINE_MAX_SILENCE"
+    )
+    enable_interruptions: bool = Field(
+        default=True,
+        description="Allow user to interrupt bot speech",
+        alias="PIPELINE_ENABLE_INTERRUPTIONS"
+    )
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore"
+    )
+
+
 class AppConfig(BaseSettings):
     """Main application configuration."""
 
@@ -118,6 +222,12 @@ class AppConfig(BaseSettings):
 
     # Logging
     logging: Optional[LoggingConfig] = None
+
+    # Audio
+    audio: Optional[AudioConfig] = None
+
+    # Pipeline
+    pipeline: Optional[PipelineConfig] = None
 
     # Application settings
     debug: bool = Field(
@@ -140,6 +250,8 @@ class AppConfig(BaseSettings):
         self.api_keys = APIKeys()
         self.home_assistant = HomeAssistantConfig()
         self.logging = LoggingConfig()
+        self.audio = AudioConfig()
+        self.pipeline = PipelineConfig()
 
 
 def load_config() -> AppConfig:

@@ -25,12 +25,33 @@ def create_parser() -> argparse.ArgumentParser:
         epilog="""
 Examples:
   %(prog)s --check-config          Check configuration validity
+  %(prog)s echo-bot                Run echo bot to test pipeline
+  %(prog)s echo-bot --duration 30  Run echo bot for 30 seconds
   %(prog)s --debug                 Run in debug mode
   %(prog)s --log-level DEBUG       Set log level to DEBUG
   %(prog)s --json-logs             Output logs in JSON format
 
 For more information, visit: https://github.com/yourusername/home-voice-assistant
         """
+    )
+
+    # Subcommands
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+
+    # Echo bot command
+    echo_parser = subparsers.add_parser(
+        "echo-bot",
+        help="Run echo bot to test the voice pipeline"
+    )
+    echo_parser.add_argument(
+        "--duration",
+        type=int,
+        help="Run for specified duration in seconds (default: run until interrupted)"
+    )
+    echo_parser.add_argument(
+        "--list-devices",
+        action="store_true",
+        help="List available audio devices and exit"
     )
 
     # Configuration options
@@ -174,6 +195,33 @@ def main(argv: Optional[List[str]] = None) -> int:
             else:
                 logger.error("Configuration check failed")
                 print("\nConfiguration check failed. Please check the logs above.")
+                return 1
+
+        # Handle echo-bot command
+        if args.command == "echo-bot":
+            # List devices if requested
+            if hasattr(args, 'list_devices') and args.list_devices:
+                from src.pipeline.audio_transport import list_audio_devices
+                list_audio_devices()
+                return 0
+
+            # Run echo bot
+            import asyncio
+            from src.pipeline.echo_bot import run_echo_bot
+
+            logger.info("Starting echo bot pipeline")
+            config = get_config()
+
+            duration = getattr(args, 'duration', None)
+            if duration:
+                logger.info(f"Echo bot will run for {duration} seconds")
+
+            try:
+                asyncio.run(run_echo_bot(config, duration))
+                return 0
+            except Exception as e:
+                logger.exception(f"Echo bot failed: {e}")
+                print(f"\nEcho bot failed: {e}", file=sys.stderr)
                 return 1
 
         # Default: show help and configuration status
