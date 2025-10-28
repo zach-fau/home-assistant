@@ -48,6 +48,8 @@ def create_local_audio_transport(
     try:
         # Create transport parameters
         params = LocalAudioTransportParams(
+            audio_in_enabled=True,  # CRITICAL: Enable audio input
+            audio_out_enabled=True,  # CRITICAL: Enable audio output
             audio_in_sample_rate=audio_config.sample_rate,
             audio_out_sample_rate=audio_config.sample_rate,
             audio_in_channels=audio_config.channels,
