@@ -1,0 +1,24 @@
+# CCPM - Local workspace files (track epics but exclude temp files)
+.claude/epics/*/updates/
+.claude/epics/*/execution-status.md
+.claude/settings.local.json
+
+# Sensitive config files
+config/credentials.json
+config/token.json
+pipecat-quickstart/.env
+pipecat-quickstart/config/credentials.json
+pipecat-quickstart/config/token.json
+
+# Mac files
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+*.egg-info/
