@@ -2,9 +2,10 @@
 name: tool-use
 status: backlog
 created: 2025-10-29T21:20:46Z
+updated: 2025-10-29T21:54:09Z
 progress: 0%
 prd: .claude/prds/tool-use.md
-github: null
+github: https://github.com/zach-fau/home-assistant/issues/11
 ---
 
 # Epic: Tool Use for Alex Voice Assistant
@@ -486,26 +487,26 @@ From PRD:
 
 ## Tasks Created
 
-- [ ] 001.md - Function Calling Framework Setup (parallel: false, dependencies: none)
-- [ ] 002.md - Home Assistant Integration (parallel: false, dependencies: 001)
-- [ ] 003.md - Error Handling & Configuration (parallel: false, dependencies: 001, 002)
-- [ ] 004.md - Google Tasks OAuth Setup (parallel: true, dependencies: 001)
-- [ ] 005.md - Google Tasks Operations (parallel: false, dependencies: 001, 004)
-- [ ] 006.md - Tavily Web Search Integration (parallel: true, dependencies: 001)
-- [ ] 007.md - Additional Integrations (Optional) (parallel: false, dependencies: 001-006)
-- [ ] 008.md - Polish & Optimization (Optional) (parallel: false, dependencies: 001-006)
+- [ ] #12 (12.md) - Function Calling Framework Setup (parallel: false, dependencies: none)
+- [ ] #13 (13.md) - Home Assistant Integration (parallel: false, dependencies: #12)
+- [ ] #14 (14.md) - Error Handling & Configuration (parallel: false, dependencies: #12, #13)
+- [ ] #15 (15.md) - Google Tasks OAuth Setup (parallel: true, dependencies: #12)
+- [ ] #16 (16.md) - Google Tasks Operations (parallel: false, dependencies: #12, #15)
+- [ ] #17 (17.md) - Tavily Web Search Integration (parallel: true, dependencies: #12)
+- [ ] #18 (18.md) - Additional Integrations (Optional) (parallel: false, dependencies: #12-#17)
+- [ ] #19 (19.md) - Polish & Optimization (Optional) (parallel: false, dependencies: #12-#17)
 
 **Total tasks:** 8
-**Parallel tasks:** 2 (Tasks 004, 006 can run alongside Task 002)
+**Parallel tasks:** 2 (Tasks #15, #17 can run alongside Task #13)
 **Sequential tasks:** 6
 **Estimated total effort:** 48-73 hours across 6-7 weeks
 
 **Critical Path:**
-1. Task 001 (4-6 hours) → Foundational
-2. Task 002 (8-12 hours) → Home Assistant integration
-3. Task 003 (6-10 hours) → Error handling
-4. Tasks 004-006 can proceed in parallel after Task 001
-5. Tasks 007-008 are optional polish
+1. Task #12 (4-6 hours) → Foundational
+2. Task #13 (8-12 hours) → Home Assistant integration
+3. Task #14 (6-10 hours) → Error handling
+4. Tasks #15-#17 can proceed in parallel after Task #12
+5. Tasks #18-#19 are optional polish
 
 ---
 
