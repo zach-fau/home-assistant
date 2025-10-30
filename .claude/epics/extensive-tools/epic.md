@@ -386,20 +386,26 @@ Scheduled Trigger (7:00 AM) OR Voice Command ("Good morning")
 - Defer fitness to Phase 1 bundle: Saved 1 hour
 - **Total Saved**: ~14 hours (18% reduction)
 
-## Task Breakdown Preview
+## Tasks Created
 
-High-level task categories (will be decomposed with `/pm:epic-decompose`):
+- [ ] 001.md - Configuration System + Weather Integration (parallel: false)
+- [ ] 002.md - Google Services Bundle (Calendar, Gmail, Keep, Fit) (parallel: false, depends on: 001)
+- [ ] 003.md - Timer/Alarm System (APScheduler) (parallel: true, depends on: 001)
+- [ ] 004.md - Unified News Integration (AP + NYT) (parallel: true, depends on: 001)
+- [ ] 005.md - Morning Briefing Core (Manager + Scheduler) (parallel: false, depends on: 001, 002, 004)
+- [ ] 006.md - Briefing Polish (Skip, Templates, Context-Aware) (parallel: true, depends on: 005, conflicts with: 005)
+- [ ] 007.md - Spotify Music Control (parallel: true, depends on: 001)
+- [ ] 008.md - Package Tracking (AfterShip) (parallel: true, depends on: 001, 005)
+- [ ] 009.md - Plaid Finance Integration (parallel: true, depends on: 001)
+- [ ] 010.md - Integration Testing + Documentation (parallel: false, depends on: 001-009)
 
-- [x] Task 1: Configuration System + Weather Integration
-- [ ] Task 2: Google Services Bundle (Calendar, Gmail, Keep, Fit)
-- [ ] Task 3: Timer/Alarm System (APScheduler)
-- [ ] Task 4: Unified News Integration (AP + NYT)
-- [ ] Task 5: Morning Briefing Core (Manager + Scheduler)
-- [ ] Task 6: Briefing Polish (Skip, Templates, Context-Aware)
-- [ ] Task 7: Spotify Music Control
-- [ ] Task 8: Package Tracking (AfterShip)
-- [ ] Task 9: Plaid Finance Integration
-- [ ] Task 10: Integration Testing + Documentation
+**Total tasks**: 10
+**Completed**: 0
+**In Progress**: 0
+**Remaining**: 10
+**Parallel tasks**: 6 (Tasks 003, 004, 006, 007, 008, 009)
+**Sequential tasks**: 4 (Tasks 001, 002, 005, 010)
+**Estimated total effort**: 58 hours (6h + 8h + 4h + 6h + 8h + 2h + 6h + 6h + 8h + 4h)
 
 ## Dependencies
 
