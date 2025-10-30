@@ -4,7 +4,7 @@ status: backlog
 created: 2025-10-30T22:15:02Z
 progress: 0%
 prd: .claude/prds/extensive-tools.md
-github: null
+github: https://github.com/zach-fau/home-assistant/issues/21
 ---
 
 # Epic: Extensive Tools Integration
@@ -388,23 +388,23 @@ Scheduled Trigger (7:00 AM) OR Voice Command ("Good morning")
 
 ## Tasks Created
 
-- [ ] 001.md - Configuration System + Weather Integration (parallel: false)
-- [ ] 002.md - Google Services Bundle (Calendar, Gmail, Keep, Fit) (parallel: false, depends on: 001)
-- [ ] 003.md - Timer/Alarm System (APScheduler) (parallel: true, depends on: 001)
-- [ ] 004.md - Unified News Integration (AP + NYT) (parallel: true, depends on: 001)
-- [ ] 005.md - Morning Briefing Core (Manager + Scheduler) (parallel: false, depends on: 001, 002, 004)
-- [ ] 006.md - Briefing Polish (Skip, Templates, Context-Aware) (parallel: true, depends on: 005, conflicts with: 005)
-- [ ] 007.md - Spotify Music Control (parallel: true, depends on: 001)
-- [ ] 008.md - Package Tracking (AfterShip) (parallel: true, depends on: 001, 005)
-- [ ] 009.md - Plaid Finance Integration (parallel: true, depends on: 001)
-- [ ] 010.md - Integration Testing + Documentation (parallel: false, depends on: 001-009)
+- [ ] [#22](https://github.com/zach-fau/home-assistant/issues/22) - Configuration System + Weather Integration (parallel: false)
+- [ ] [#23](https://github.com/zach-fau/home-assistant/issues/23) - Google Services Bundle (Calendar, Gmail, Keep, Fit) (parallel: false, depends on: 22)
+- [ ] [#24](https://github.com/zach-fau/home-assistant/issues/24) - Timer/Alarm System (APScheduler) (parallel: true, depends on: 22)
+- [ ] [#25](https://github.com/zach-fau/home-assistant/issues/25) - Unified News Integration (AP + NYT) (parallel: true, depends on: 22)
+- [ ] [#26](https://github.com/zach-fau/home-assistant/issues/26) - Morning Briefing Core (Manager + Scheduler) (parallel: false, depends on: 22, 23, 25)
+- [ ] [#27](https://github.com/zach-fau/home-assistant/issues/27) - Briefing Polish (Skip, Templates, Context-Aware) (parallel: true, depends on: 26, conflicts with: 26)
+- [ ] [#28](https://github.com/zach-fau/home-assistant/issues/28) - Spotify Music Control (parallel: true, depends on: 22)
+- [ ] [#29](https://github.com/zach-fau/home-assistant/issues/29) - Package Tracking (AfterShip) (parallel: true, depends on: 22, 26)
+- [ ] [#30](https://github.com/zach-fau/home-assistant/issues/30) - Plaid Finance Integration (parallel: true, depends on: 22)
+- [ ] [#31](https://github.com/zach-fau/home-assistant/issues/31) - Integration Testing + Documentation (parallel: false, depends on: 22-30)
 
 **Total tasks**: 10
 **Completed**: 0
 **In Progress**: 0
 **Remaining**: 10
-**Parallel tasks**: 6 (Tasks 003, 004, 006, 007, 008, 009)
-**Sequential tasks**: 4 (Tasks 001, 002, 005, 010)
+**Parallel tasks**: 6 (Issues #24, #25, #27, #28, #29, #30)
+**Sequential tasks**: 4 (Issues #22, #23, #26, #31)
 **Estimated total effort**: 58 hours (6h + 8h + 4h + 6h + 8h + 2h + 6h + 6h + 8h + 4h)
 
 ## Dependencies
